@@ -19,4 +19,9 @@ public class BookService
     {
         return _bookModel.FetchBookById(id);
     }
+
+    public void PostBook(Book book)
+    {
+        _bookModel.PostBook(book);
+    }
 }

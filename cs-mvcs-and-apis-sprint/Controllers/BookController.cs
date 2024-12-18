@@ -1,4 +1,5 @@
 ﻿using cs_mvcs_and_apis_sprint.Services;
+using cs_mvcs_and_apis_sprint.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace cs_mvcs_and_apis_sprint.Controllers;
@@ -27,5 +28,12 @@ public class BookController : Controller
         var author = _bookService.GetBookById(id);
         if (author == null) return NotFound();
         return Ok(author);
+    }
+
+    [HttpPost]
+    public IActionResult PostBook(Book book)
+    {
+        _bookService.PostBook(book);
+        return Created(string.Empty, book);
     }
 }

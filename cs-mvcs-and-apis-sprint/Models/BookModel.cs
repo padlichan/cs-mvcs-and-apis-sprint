@@ -14,4 +14,19 @@ public class BookModel
         var books = FetchBooks();
         return books.Where(b => b.Id == id).FirstOrDefault();
     }
+
+    public void PostBook(Book book)
+    {
+        var books = FetchBooks();
+        book.Id = books.Last().Id + 1;  
+        books.Add(book);
+        WriteData(books);
+
+    }
+
+    private void WriteData(List<Book> books)
+    {
+        File.WriteAllText("Resources/Books.json", JsonSerializer.Serialize(books));
+    }
+       
 }
