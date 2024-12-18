@@ -24,6 +24,16 @@ public class BookModel
 
     }
 
+    public bool DeleteBook(int id)
+    {
+        var books = FetchBooks();
+        Book? bookToDelete = books.Where(b => b.Id == id).FirstOrDefault();
+        if (bookToDelete == null) return false;
+        books.Remove(bookToDelete);
+        WriteData(books);
+        return true;
+    }
+
     private void WriteData(List<Book> books)
     {
         File.WriteAllText("Resources/Books.json", JsonSerializer.Serialize(books));

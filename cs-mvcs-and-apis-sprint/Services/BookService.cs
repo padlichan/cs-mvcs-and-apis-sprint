@@ -24,4 +24,9 @@ public class BookService
     {
         _bookModel.PostBook(book);
     }
+
+    public bool DeleteBook(int Id)
+    {
+        return _bookModel.DeleteBook(Id);
+    }
 }

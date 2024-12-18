@@ -36,4 +36,11 @@ public class BookController : Controller
         _bookService.PostBook(book);
         return Created(string.Empty, book);
     }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteBook(int id)
+    {
+       if(_bookService.DeleteBook(id)) return NoContent();
+       return NotFound();
+    }
 }
