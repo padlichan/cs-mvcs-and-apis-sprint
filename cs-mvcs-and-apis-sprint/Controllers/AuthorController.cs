@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using cs_mvcs_and_apis_sprint.Services;
+using cs_mvcs_and_apis_sprint.Models;
 
 namespace cs_mvcs_and_apis_sprint.Controllers
 {
     [Route("/")]
-    [Route("/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthorController : Controller
     {
@@ -23,11 +24,17 @@ namespace cs_mvcs_and_apis_sprint.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetAuthorsById(int id)
+        public IActionResult GetAuthorById(int id)
         {
             var author = _authorService.GetAuthorById(id);
             if(author == null)  return NotFound();
             return Ok(author);
+        }
+        [HttpPost]
+        public IActionResult PostAuthor(Author author)
+        {
+            _authorService.PostAuthor(author);
+            return Created(string.Empty, author);
         }
     }
 }

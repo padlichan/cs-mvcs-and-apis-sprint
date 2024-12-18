@@ -19,4 +19,9 @@ public class AuthorService
     {
         return _authorModel.FetchAuthorById(id);
     }
+
+    public void PostAuthor(Author author)
+    {
+        _authorModel.PostAuthor(author);
+    }
 }

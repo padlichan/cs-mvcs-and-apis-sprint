@@ -6,18 +6,24 @@ public class AuthorModel
     public List<Author> FetchAuthors()
     {
         //Load data from json or the db
-        List<Author> authors = ReadAuthorData();
+        List<Author> authors = JsonSerializer.Deserialize<List<Author>>(File.ReadAllText("Resources/Authors.json"))!;
         return authors;
     }
 
     public Author? FetchAuthorById(int id)
     {
-        var authors = ReadAuthorData();
+        var authors = FetchAuthors();
         return authors.Where(a => a.Id == id).FirstOrDefault();
     }
 
-    private List<Author> ReadAuthorData()
+    public void PostAuthor(Author author)
     {
-        return JsonSerializer.Deserialize<List<Author>>(File.ReadAllText("Resources/Authors.json"))!;
+        var authors = FetchAuthors();
+        author.Id = authors.Last().Id + 1;
+        authors.Add(author);
+        File.WriteAllText("Resources/Authors.json", JsonSerializer.Serialize(authors));
     }
+
+
+    
 }
