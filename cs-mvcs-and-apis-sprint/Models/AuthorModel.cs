@@ -38,6 +38,4 @@ public class AuthorModel
     {
         File.WriteAllText("Resources/Authors.json", JsonSerializer.Serialize(authors));
     }
-
-    
 }
