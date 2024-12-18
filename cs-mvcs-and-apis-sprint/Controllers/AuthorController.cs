@@ -4,8 +4,9 @@ using cs_mvcs_and_apis_sprint.Services;
 namespace cs_mvcs_and_apis_sprint.Controllers
 {
     [Route("/")]
+    [Route("/[controller]")]
     [ApiController]
-    public class AuthorController :Controller
+    public class AuthorController : Controller
     {
         private readonly AuthorService _authorService;
 
@@ -19,6 +20,14 @@ namespace cs_mvcs_and_apis_sprint.Controllers
         {
             var authors = _authorService.GetAllAuthors();
             return Ok(authors);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetAuthorsById(int id)
+        {
+            var author = _authorService.GetAuthorById(id);
+            if(author == null)  return NotFound();
+            return Ok(author);
         }
     }
 }
