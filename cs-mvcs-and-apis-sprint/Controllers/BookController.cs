@@ -43,4 +43,11 @@ public class BookController : Controller
        if(_bookService.DeleteBook(id)) return NoContent();
        return NotFound();
     }
+
+    [HttpGet("author/{authorId}")]
+    public IActionResult GetBooksByAuthorId(int authorId)
+    {
+        if(_bookService.TryGetBooksByAuthorId(authorId, out  var books)) return Ok(books);
+        return NotFound();
+    }
 }

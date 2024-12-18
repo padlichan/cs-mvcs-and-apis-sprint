@@ -34,6 +34,16 @@ public class BookModel
         return true;
     }
 
+    public bool TryFetchBooksByAuthorId(int authorId, out List<Book> books)
+    {
+        books = [];
+        var authors = new AuthorModel().FetchAuthors();
+        Author? author = authors.Where(a => a.Id == authorId).FirstOrDefault();
+        if (author == null) return false;
+        books = FetchBooks().Where(b => b.Author == author.Name).ToList();
+        return true;
+    }
+
     private void WriteData(List<Book> books)
     {
         File.WriteAllText("Resources/Books.json", JsonSerializer.Serialize(books));

@@ -29,4 +29,10 @@ public class BookService
     {
         return _bookModel.DeleteBook(Id);
     }
+
+    public bool TryGetBooksByAuthorId(int authorId, out List<Book> books)
+    {
+        if (_bookModel.TryFetchBooksByAuthorId(authorId, out books)) return true;
+        return false;
+    }
 }
