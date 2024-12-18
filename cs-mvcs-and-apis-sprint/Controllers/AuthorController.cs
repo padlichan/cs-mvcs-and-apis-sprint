@@ -4,7 +4,6 @@ using cs_mvcs_and_apis_sprint.Models;
 
 namespace cs_mvcs_and_apis_sprint.Controllers;
 
-[Route("/")]
 [Route("/[controller]")]
 [ApiController]
 public class AuthorController : Controller

@@ -12,6 +12,11 @@ public class BookService
 
     public List<Book> GetBooks()
     {
-        return _bookModel.GetBooks();
+        return _bookModel.FetchBooks();
+    }
+
+    public Book? GetBookById(int id)
+    {
+        return _bookModel.FetchBookById(id);
     }
 }
