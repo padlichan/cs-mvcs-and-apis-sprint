@@ -21,9 +21,23 @@ public class AuthorModel
         var authors = FetchAuthors();
         author.Id = authors.Last().Id + 1;
         authors.Add(author);
-        File.WriteAllText("Resources/Authors.json", JsonSerializer.Serialize(authors));
+        WriteData(authors);
     }
 
+    public bool DeleteAuthor(int id)
+    {
+        var authors = FetchAuthors();
+        Author? authorToDelete = authors.Where(a => a.Id == id).FirstOrDefault();
+        if(authorToDelete == null) return false;
+        authors.Remove(authorToDelete);
+        WriteData(authors);
+        return true;
+    }
+
+    private void WriteData(List<Author> authors)
+    {
+        File.WriteAllText("Resources/Authors.json", JsonSerializer.Serialize(authors));
+    }
 
     
 }

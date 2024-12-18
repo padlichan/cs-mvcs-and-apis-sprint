@@ -5,7 +5,7 @@ using cs_mvcs_and_apis_sprint.Models;
 namespace cs_mvcs_and_apis_sprint.Controllers
 {
     [Route("/")]
-    [Route("api/[controller]")]
+    [Route("/[controller]")]
     [ApiController]
     public class AuthorController : Controller
     {
@@ -35,6 +35,14 @@ namespace cs_mvcs_and_apis_sprint.Controllers
         {
             _authorService.PostAuthor(author);
             return Created(string.Empty, author);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteAuthor(int id)
+        {
+            if(_authorService.DeleteAuthor(id)) return NoContent();
+            return NotFound();
+
         }
     }
 }
