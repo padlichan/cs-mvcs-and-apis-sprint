@@ -1,5 +1,5 @@
 # BooksAndAuthorsAPI Project
-This repository is a small project designed to practice implementing the MVC architectural pattern in ASP.NET Core while working on a Web API.
+This repository is a small project designed to practice implementing the MVC architectural pattern in ASP.NET Core while working on a Web API for an imaginary bookshop.
 The project focuses on building a cleanly structured application with controllers, services, and models, demonstrating the flow of data and the separation of concerns.
 
 The primary goal of this project is to demonstrate the ability to:
